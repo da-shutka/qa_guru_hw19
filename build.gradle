@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.dpqa'
+version = '1.0-SNAPSHOT'
+
+def unitVersion = "5.10.2",
+    assertJsVersion = "3.25.3",
+    selenideVersion = "7.3.3",
+    ownerVersion = "1.0.12"
+
+repositories {
+    mavenCentral()
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter:$unitVersion",
+            "org.slf4j:slf4j-simple:2.0.13",
+            "org.assertj:assertj-core:$assertJsVersion",
+            "com.codeborne:selenide:$selenideVersion",
+            "org.aeonbits.owner:owner:$ownerVersion"
+    )
+}
+
+test {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+}
